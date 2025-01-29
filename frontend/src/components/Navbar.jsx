@@ -8,7 +8,12 @@ function Navbar() {
           Books management app
         </Link>
         <div style={styles.links}>
-          <Link to="/" style={styles.link}>
+          <Link to="/admin/signin" style={styles.link}>
+            Admin Login
+          </Link>
+        </div>
+        <div style={styles.links}>
+          <Link to="/books" style={styles.link}>
             Books
           </Link>
         </div>

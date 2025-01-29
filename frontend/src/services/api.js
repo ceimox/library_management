@@ -11,10 +11,35 @@ const fetchBooks = async () => {
   return response.json()
 }
 
-// React Query hook
+// Sign in function
+const signIn = async (credentials) => {
+  const response = await fetch(`${API_URL}/admin/signin`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(credentials),
+  })
+
+  if (!response.ok) {
+    const errorData = await response.json()
+    throw new Error(errorData.message || "Failed to sign in")
+  }
+
+  return response.json()
+}
+
+// React Query hooks
 export const useFetchBooks = () => {
   return useQuery({
     queryKey: ["books"],
     queryFn: fetchBooks,
+  })
+}
+
+export const useSignIn = (options = {}) => {
+  return useMutation({
+    mutationFn: signIn,
+    ...options,
   })
 }
